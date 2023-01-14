@@ -1,0 +1,10 @@
+{
+  "dev": {
+    "driver": "pg",
+    "user": "postgres",
+    "password": "cmomPXjD9evpanCCj36L", 
+    "host": "containers-us-west-171.railway.app",
+    "database": "railway",
+    "port": "7730"
+  }
+}
