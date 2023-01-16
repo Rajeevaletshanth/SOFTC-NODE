@@ -58,6 +58,7 @@ module.exports = {
                           text-decoration: none;
                           margin-top: 20px;
                           display: inline-block;
+                          fon
                         }
                       </style>
                     </head>
@@ -67,7 +68,7 @@ module.exports = {
                         <p>We appreciate your interest in our services and products. We have received your message and will get back to you as soon as possible. </p>
                         <p>If you need immediate assistance, please call us at +94768021017.</p>
                         <p>Thank you for choosing SOFTC.</p>
-                        <a href="https://softc.vercel.com" class="btn">Visit our website</a>
+                        <a href="https://softc.vercel.app/" target="_blank" class="btn text-white" style="font-size: 16px">Visit our website</a>
                       </div>
                     </body>
                   </html>`,
