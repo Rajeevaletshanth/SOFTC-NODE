@@ -76,13 +76,13 @@ module.exports = {
 
         transporter.sendMail(mailOptions, (err, info) => {
           if (err) {
-            res.send({ response: "success", message: err });
-            res.send({ response: "error", message: err });
+            res.send({ response: "success", message: "Your information has been received, and we'll be in touch soon.", email_sent: false });
           } else {
             res.send({
               response: "success",
               message:
                 "Your information has been received, and we'll be in touch soon.",
+              email_sent: true
             });
           }
         });
