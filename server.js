@@ -141,6 +141,8 @@ const favouriteRoute = require('./routes/favouriteRoute');
 const topBrandsRoute = require('./routes/topBrandsRoute');
 const topOfferRoute = require('./routes/topOfferRoute');
 
+const contactusRoute = require('./routes/contactusRoute');
+
 app.use('/admin', adminRoute);
 app.use('/superadmin', superadminRoute);
 
@@ -164,6 +166,8 @@ app.use('/orders', orderRoute);
 app.use('/favourites', favouriteRoute);
 app.use('/top_brands', topBrandsRoute);
 app.use('/top_offers', topOfferRoute);
+
+app.use('/contactus', contactusRoute);
 
 app.use(authenticateToken, uploadRoute);
 app.use(uploadRoute);
