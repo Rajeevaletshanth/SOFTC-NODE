@@ -195,7 +195,7 @@ module.exports = {
                 const link = `${process.env.CLIENT_URL}/admin/reset_password/${admin[0].id}/${token}`;
 
                 let mailOptions = {
-                    from: `LTW Tech <${process.env.MAILER_USER}>`, 
+                    from: `SOFTC <${process.env.MAILER_USER}>`, 
                     to: admin[0].email,
                     subject: 'Reset Password', 
                     html: `<b> Click here to reset password : </b> <br/> ${link}`
