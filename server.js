@@ -100,9 +100,9 @@ app.use(requestIp.mw())
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 
 //Welcome Route
-app.get('/', authenticateToken, (req, res) => {
+app.get('/', (req, res) => {
     // res.json(req.user)
-    res.send({ "message": "Welcome to SOFTC Engine...", "authenticate": true })
+    res.send({ "message": "Welcome to SOFTC Engine...", "authenticate": false })
 })
 
 app.get('/validate', authenticateToken, (req, res) => {
