@@ -1,7 +1,7 @@
 require("dotenv").config();
 const logger = require("../config/logger");
 const Resumes = require("../models/resumes");
-// const Upload = require('../models/upload');
+const Upload = require('../models/upload');
 const transporter = require("../services/nodemailer/mailer");
 
 const multer = require('multer');
@@ -29,7 +29,8 @@ const upload = multer({ storage: storage });
 module.exports = {
   create: (upload.single('file'), async (req, res, next) => {
 
-    console.log(req.file)
+    // console.log(req.file)
+    res.json({filename: req.file.filename })
 
     // const name = req.body.name;
     // const email = req.body.email;
