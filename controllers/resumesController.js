@@ -1,63 +1,34 @@
 require("dotenv").config();
 const logger = require("../config/logger");
 const Resumes = require("../models/resumes");
-const Upload = require('../models/upload');
 const transporter = require("../services/nodemailer/mailer");
 
-const multer = require('multer');
-// const path = require('path');
-
-const storage = multer.diskStorage({
-    destination: function (req, file, cb) {
-      cb(null, '../public/resumes');
-    },
-    filename: function (req, file, cb) {
-      cb(null, file.originalname);
-    }
-});
-
-const upload = multer({ storage: storage });
-
-// const storage = multer.diskStorage({
-//     destination: path.join(__dirname, '../public', 'resumes'),
-//     filename: function (req, file, cb) {   
-//         // null as first argument means no error
-//         cb(null, Date.now() + '-' + file.originalname.replace(/\s/g, ''));  
-//     }
-// });
 
 module.exports = {
-  create: (upload.single('file'), async (req, res, next) => {
+  create: async (req, res, next) => {
+  
+    const name = req.body.name;
+    const email = req.body.email;
+    const phone = req.body.phone;
+    const resume = req.body.resume;
 
-    // console.log(req.file)
-    res.json({filename: req.file.filename })
-
-    // const name = req.body.name;
-    // const email = req.body.email;
-    // const phone = req.body.phone;
-    // const resume = req.body.resume;
-    // // const file = req.body.resume;
-
-    // try {         
-    //         const newResume = new Resumes({
-    //             name: name,
-    //             email: email,
-    //             phone: phone,
-    //             resume: resume
-    //         })
-    //         await newResume.save();
-    //         if(newResume)
-    //             res.json({ response: "success", message: "Your cv uploaded successfully." })
-    //         else
-    //             res.json({ response: "error", message: "Sorry cannot upload file. Please try again later." })
-
-    //     // }); 
-
-    // } catch (error) {
-    //     return res.json({response: "error", message: error.message});
-    // }
+    try {         
+            const newResume = new Resumes({
+                name: name,
+                email: email,
+                phone: phone,
+                resume: resume
+            })
+            await newResume.save();
+            if(newResume)
+                res.json({ response: "success", message: "Your cv uploaded successfully." })
+            else
+                res.json({ response: "error", message: "Sorry cannot upload file. Please try again later." })
+    } catch (error) {
+        return res.json({response: "error", message: error.message});
+    }
       
-  }),
+  },
 
   getAll: async (req, res) => {
     try {

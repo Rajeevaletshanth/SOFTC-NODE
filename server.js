@@ -189,6 +189,16 @@ app.get('/getAvatar/:filename', (req, res) => {
     res.download(file);
 })
 
+//Upload PDF
+const multer = require('multer');
+const upload = multer({ dest: 'resumes/' });
+app.post('/upload_resume', upload.single('pdfFile'), (req, res) => {
+    if (!req.file) {
+      return res.status(400).json({response: "error", message: "No file uploaded."});
+    }
+    res.json({response: "success", message: "Resume uploaded successfully."});
+});
+
 
 //Test mail
 const testmail = require('./services/nodemailer/test_mail');
