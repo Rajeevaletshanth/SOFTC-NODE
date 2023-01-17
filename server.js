@@ -142,7 +142,7 @@ const topBrandsRoute = require('./routes/topBrandsRoute');
 const topOfferRoute = require('./routes/topOfferRoute');
 
 const contactusRoute = require('./routes/contactusRoute');
-const resumesRoute = require('./routes/resumesRoute');
+// const resumesRoute = require('./routes/resumesRoute');
 
 app.use('/admin', adminRoute);
 app.use('/superadmin', superadminRoute);
@@ -169,7 +169,7 @@ app.use('/top_brands', topBrandsRoute);
 app.use('/top_offers', topOfferRoute);
 
 app.use('/contactus', contactusRoute);
-app.use('/resume', resumesRoute);
+// app.use('/resume', resumesRoute);
 
 app.use(authenticateToken, uploadRoute);
 app.use(uploadRoute);
