@@ -1,20 +1,20 @@
 require("dotenv").config();
 const logger = require("../config/logger");
 const Resumes = require("../models/resumes");
-const Upload = require('../models/upload');
+// const Upload = require('../models/upload');
 const transporter = require("../services/nodemailer/mailer");
 
-const multer = require('multer');
-const path = require('path');
+// const multer = require('multer');
+// const path = require('path');
 
 
-const storage = multer.diskStorage({
-    destination: path.join(__dirname, '../public', 'resumes'),
-    filename: function (req, file, cb) {   
-        // null as first argument means no error
-        cb(null, Date.now() + '-' + file.originalname.replace(/\s/g, ''));  
-    }
-});
+// const storage = multer.diskStorage({
+//     destination: path.join(__dirname, '../public', 'resumes'),
+//     filename: function (req, file, cb) {   
+//         // null as first argument means no error
+//         cb(null, Date.now() + '-' + file.originalname.replace(/\s/g, ''));  
+//     }
+// });
 
 module.exports = {
   create: async (req, res) => {
@@ -22,36 +22,37 @@ module.exports = {
     const name = req.body.name;
     const email = req.body.email;
     const phone = req.body.phone;
+    const resume = req.body.resume;
     // const file = req.body.resume;
 
     try {
-        let upload = multer({ storage: storage}).single('file');
+        // let upload = multer({ storage: storage}).single('file');
 
-        upload(req, res, async (err) => {
+        // upload(req, res, async (err) => {
 
-            if (!req.file) {
-                return res.send('Please select a file to upload');
-            }
-            else if (err instanceof multer.MulterError) {
-                return res.send(err);
-            }
-            else if (err) {
-                return res.send(err);
-            }
+        //     if (!req.file) {
+        //         return res.send('Please select a file to upload');
+        //     }
+        //     else if (err instanceof multer.MulterError) {
+        //         return res.send(err);
+        //     }
+        //     else if (err) {
+        //         return res.send(err);
+        //     }
 
-            const classifiedsadd = {
-                file: req.file.filename
-            };
+        //     const classifiedsadd = {
+        //         file: req.file.filename
+        //     };
 
 
-            const upload = new Upload(classifiedsadd)
-            await upload.save()
+        //     const upload = new Upload(classifiedsadd)
+        //     await upload.save()
             
             const newResume = new Resumes({
                 name: name,
                 email: email,
                 phone: phone,
-                resume: upload.file
+                resume: resume
             })
             await newResume.save();
             if(newResume)
@@ -59,7 +60,7 @@ module.exports = {
             else
                 res.json({ response: "error", message: "Sorry cannot upload file. Please try again later." })
 
-        }); 
+        // }); 
 
     } catch (error) {
         return res.json({response: "error", message: error.message});
