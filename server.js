@@ -171,7 +171,7 @@ app.use('/top_offers', topOfferRoute);
 app.use('/contactus', contactusRoute);
 app.use('/resume', resumesRoute);
 
-app.use(authenticateToken, uploadRoute);
+// app.use(authenticateToken, uploadRoute);
 app.use(uploadRoute);
 
 app.get('/download/:filename', authenticateToken, (req, res) => {
